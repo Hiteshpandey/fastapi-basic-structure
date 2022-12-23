@@ -1,7 +1,7 @@
-
 from typing import Any, Dict, List, Optional, Union
 
 from pydantic import AnyHttpUrl, BaseSettings, validator
+import base64
 
 class Settings(BaseSettings):
     PROJECT_NAME: str
@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     def assemble_db_connection(cls, v: Optional[str], values: Dict[str, Any]) -> Any:
         if isinstance(v, str):
             return v
-        return f"mysql://{values.get('MYSQL_USER')}:{values.get('MYSQL_PASSWORD')}@{values.get('MYSQL_HOST')}:" \
+        return f"mysql://{values.get('MYSQL_USER')}:{base64.b64decode(values.get('MYSQL_PASSWORD')).decode('utf-8')}@{values.get('MYSQL_HOST')}:" \
             f"{values.get('MYSQL_PORT')}/{values.get('MYSQL_DATABASE')}"
 
     class Config:

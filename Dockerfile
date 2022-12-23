@@ -1,4 +1,4 @@
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.11
 
 ENV PYTHONPATH "${PYTHONPATH}:/"
 ENV PORT=8000

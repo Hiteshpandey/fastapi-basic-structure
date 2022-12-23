@@ -1,9 +1,9 @@
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from app import schemas
+from app.schemas import schemas
 from app.core.config import settings
 from app.database import engine, SessionLocal
-from app import models
+from app.models import models
 from sqlalchemy.orm import Session
 
 def get_application():
